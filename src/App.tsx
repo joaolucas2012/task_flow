@@ -4,7 +4,6 @@ import HomePage from "./pages/HomePage";
 import TasksPage from "./pages/TasksPage";
 import AboutPage from "./pages/AboutPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import TestPage from "./pages/TestPage";
 
 export default function App() {
   return (
@@ -13,7 +12,6 @@ export default function App() {
         <Route index element={<HomePage />} />
         <Route path="tarefas" element={<TasksPage />} />
         <Route path="sobre" element={<AboutPage />} />
-        <Route path="teste" element={<TestPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

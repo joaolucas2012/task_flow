@@ -3,11 +3,14 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router";
 import App from "./App";
 import "./index.css";
+import { TasksProvider } from "./providers/TasksProvider";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
-      <App />
+      <TasksProvider>
+        <App />
+      </TasksProvider>
     </BrowserRouter>
   </StrictMode>,
 );
