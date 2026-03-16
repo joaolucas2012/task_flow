@@ -6,8 +6,8 @@ import {
   type ReactNode,
   useCallback,
 } from "react";
-import type { Task } from "../../../types/Task";
-import type { TasksContextValue } from "../../../types/TaskContextValue";
+import type { Task } from "../types/Task";
+import type { TasksContextValue } from "../types/TaskContextValue";
 import { TasksContext } from "../contexts/TaskContext";
 import { useDebounce } from "../hooks/useDebounce";
 import { tasksReducer } from "../reducer/tasksReducer";
