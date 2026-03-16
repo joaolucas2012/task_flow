@@ -9,7 +9,11 @@ type Props = {
 
 export default function TaskList({ tasks, onToggle, onRemove }: Props) {
   if (tasks.length === 0) {
-    return <p className="text-slate-500">Nenhuma tarefa ainda.</p>;
+    return (
+      <p className="text-center text-sm text-slate-500 sm:text-base">
+        Nenhuma tarefa ainda.
+      </p>
+    );
   }
 
   return (

@@ -21,16 +21,16 @@ export default function TaskForm({ onAddTask }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-2 sm:flex-row">
       <input
         ref={inputRef}
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         placeholder="Nova tarefa"
-        className="flex-1 rounded-xl border border-slate-300 px-4 py-2"
+        className="flex-1 rounded-xl border border-slate-300 px-4 py-2 text-sm sm:text-base"
       />
 
-      <button className="rounded-xl bg-slate-900 px-4 py-2 text-white shadow-sm transition-colors hover:bg-slate-800 hover:text-slate-50">
+      <button className="w-full rounded-xl bg-slate-900 px-4 py-2 text-sm text-white shadow-sm transition-colors hover:bg-slate-800 hover:text-slate-50 sm:w-auto sm:text-base">
         Adicionar
       </button>
     </form>

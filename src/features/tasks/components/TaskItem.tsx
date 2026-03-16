@@ -13,8 +13,8 @@ function TaskItem({ task, onToggle, onRemove }: Props) {
   const isDark = theme === "dark";
 
   const cardClass = isDark
-    ? "flex items-center justify-between gap-4 rounded-2xl border border-slate-800 bg-slate-900/60 p-4 shadow-sm"
-    : "flex items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm";
+    ? "flex flex-col gap-3 rounded-2xl border border-slate-800 bg-slate-900/60 p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+    : "flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:gap-4";
 
   const titleClass = isDark
     ? `flex-1 cursor-pointer text-sm sm:text-base ${
@@ -54,7 +54,7 @@ function TaskItem({ task, onToggle, onRemove }: Props) {
           e.stopPropagation();
           onRemove(task.id);
         }}
-        className={removeButtonClass}
+        className={`${removeButtonClass} self-end sm:self-auto`}
       >
         Remover
       </button>

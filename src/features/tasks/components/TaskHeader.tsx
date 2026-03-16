@@ -11,18 +11,18 @@ export default function TaskHeader({
 }: Props) {
   return (
     <>
-      <div className="flex max-w-6xl justify-between py-4">
-        <h1 className="text-3xl font-bold">Gerenciador de tarefas</h1>
+      <div className="flex flex-col gap-3 py-4 sm:flex-row sm:items-center sm:justify-between">
+        <h1 className="text-2xl font-bold sm:text-3xl">Gerenciador de tarefas</h1>
 
         <button
-          className="rounded-xl bg-slate-900 px-4 py-2 text-white shadow-sm transition-colors hover:bg-slate-800 hover:text-slate-50"
+          className="w-full rounded-xl bg-slate-900 px-4 py-2 text-sm text-white shadow-sm transition-colors hover:bg-slate-800 hover:text-slate-50 sm:w-auto"
           onClick={onCleanCompleted}
         >
           Limpar concluídas
         </button>
       </div>
 
-      <div className={pendingCount > 0 ? "text-red-500" : "text-green-700"}>
+      <div className={`text-sm sm:text-base ${pendingCount > 0 ? "text-red-500" : "text-green-700"}`}>
         {pendingText}
       </div>
     </>
