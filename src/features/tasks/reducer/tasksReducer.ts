@@ -4,7 +4,8 @@ export type TasksAction =
   | { type: "added"; payload: { title: string } }
   | { type: "removed"; payload: { id: number } }
   | { type: "toggled"; payload: { id: number } }
-  | { type: "cleanedCompleted" };
+  | { type: "cleanedCompleted" }
+  | { type: "reordered"; payload: { activeId: number; overId: number } };
 
 export function tasksReducer(state: Task[], action: TasksAction): Task[] {
   switch (action.type) {
@@ -40,6 +41,18 @@ export function tasksReducer(state: Task[], action: TasksAction): Task[] {
 
     case "cleanedCompleted":
       return state.filter((task) => !task.completed);
+
+    case "reordered": {
+      const oldIndex = state.findIndex((t) => t.id === action.payload.activeId);
+      const newIndex = state.findIndex((t) => t.id === action.payload.overId);
+
+      const newState = [...state];
+
+      const [moved] = newState.splice(oldIndex, 1);
+      newState.splice(newIndex, 0, moved);
+
+      return newState;
+    }
 
     default:
       return state;
