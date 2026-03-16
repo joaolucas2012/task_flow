@@ -30,7 +30,7 @@ export default function TaskForm({ onAddTask }: Props) {
         className="flex-1 rounded-xl border border-slate-300 px-4 py-2"
       />
 
-      <button className="rounded-xl bg-slate-900 px-4 py-2 text-white">
+      <button className="rounded-xl bg-slate-900 px-4 py-2 text-white shadow-sm transition-colors hover:bg-slate-800 hover:text-slate-50">
         Adicionar
       </button>
     </form>

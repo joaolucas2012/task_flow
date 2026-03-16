@@ -1,4 +1,21 @@
+import { useThemeStore } from "../features/theme/store/theme.store";
+
 export default function AboutPage() {
+  const theme = useThemeStore((state) => state.theme);
+  const isDark: boolean = theme === "dark";
+
+  const cardContainerClass: string = isDark
+    ? "rounded-2xl border border-slate-800 bg-slate-900/60 p-6 shadow-sm"
+    : "rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200";
+
+  const cardTitleClass: string = isDark
+    ? "mb-3 text-xl font-semibold text-slate-50 tracking-tight"
+    : "mb-3 text-xl font-semibold text-slate-900 tracking-tight";
+
+  const listClass: string = isDark
+    ? "list-disc space-y-2 pl-6 text-slate-300"
+    : "list-disc space-y-2 pl-6 text-slate-700";
+
   return (
     <section className="space-y-6">
       <div>
@@ -9,9 +26,9 @@ export default function AboutPage() {
         </p>
       </div>
 
-      <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-        <h2 className="mb-3 text-xl font-semibold">O que já existe aqui</h2>
-        <ul className="list-disc space-y-2 pl-6 text-slate-700">
+      <div className={cardContainerClass}>
+        <h2 className={cardTitleClass}>O que já existe aqui</h2>
+        <ul className={listClass}>
           <li>estrutura de pastas organizada</li>
           <li>layout compartilhado</li>
           <li>navegação entre páginas</li>

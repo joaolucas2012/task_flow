@@ -15,7 +15,7 @@ export default function TaskHeader({
         <h1 className="text-3xl font-bold">Gerenciador de tarefas</h1>
 
         <button
-          className="rounded-xl bg-slate-900 px-4 py-2 text-white"
+          className="rounded-xl bg-slate-900 px-4 py-2 text-white shadow-sm transition-colors hover:bg-slate-800 hover:text-slate-50"
           onClick={onCleanCompleted}
         >
           Limpar concluídas
