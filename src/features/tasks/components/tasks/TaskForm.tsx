@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 type Props = {
   onAddTask: (title: string) => void;
@@ -6,6 +6,7 @@ type Props = {
 
 export default function TaskForm({ onAddTask }: Props) {
   const [title, setTitle] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
 
   function handleSubmit(e: React.SubmitEvent) {
     e.preventDefault();
@@ -14,12 +15,15 @@ export default function TaskForm({ onAddTask }: Props) {
 
     onAddTask(title);
 
+    inputRef.current?.focus();
+
     setTitle("");
   }
 
   return (
     <form onSubmit={handleSubmit} className="flex gap-2">
       <input
+        ref={inputRef}
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         placeholder="Nova tarefa"

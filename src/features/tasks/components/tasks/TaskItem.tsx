@@ -1,4 +1,5 @@
-import type { Task } from "../../types/Task";
+import { memo } from "react";
+import type { Task } from "../../../../types/Task";
 
 type Props = {
   task: Task;
@@ -6,7 +7,7 @@ type Props = {
   onRemove: (id: number) => void;
 };
 
-export default function TaskItem({ task, onToggle, onRemove }: Props) {
+function TaskItem({ task, onToggle, onRemove }: Props) {
   return (
     <div className="flex items-center justify-between rounded-xl bg-white p-4 shadow">
       <span
@@ -24,3 +25,5 @@ export default function TaskItem({ task, onToggle, onRemove }: Props) {
     </div>
   );
 }
+
+export default memo(TaskItem);

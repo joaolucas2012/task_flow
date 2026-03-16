@@ -4,11 +4,13 @@ import {
   useMemo,
   useReducer,
   type ReactNode,
+  useCallback,
 } from "react";
-import type { Task } from "../types/Task";
-import { tasksReducer } from "../reducers/tasksReducer";
-import type { TasksContextValue } from "../types/TaskContextValue";
+import type { Task } from "../../../types/Task";
+import type { TasksContextValue } from "../../../types/TaskContextValue";
 import { TasksContext } from "../contexts/TaskContext";
+import { useDebounce } from "../hooks/useDebounce";
+import { tasksReducer } from "../reducer/tasksReducer";
 
 function getInitialTasks(): Task[] {
   const stored = localStorage.getItem("tasks");
@@ -36,9 +38,11 @@ export function TasksProvider({ children }: Props) {
   const [filter, setFilter] = useState<"all" | "pending" | "completed">("all");
   const [search, setSearch] = useState("");
 
+  const debouncedTasks = useDebounce(tasks, 500);
+
   useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
+    localStorage.setItem("tasks", JSON.stringify(debouncedTasks));
+  }, [debouncedTasks]);
 
   const pendingCount = useMemo(
     () => tasks.filter((task) => !task.completed).length,
@@ -73,6 +77,22 @@ export function TasksProvider({ children }: Props) {
     });
   }, [tasks, filter, search]);
 
+  const addTask = useCallback((title: string) => {
+    dispatch({ type: "added", payload: { title } });
+  }, []);
+
+  const removeTask = useCallback((id: number) => {
+    dispatch({ type: "removed", payload: { id } });
+  }, []);
+
+  const toggleTask = useCallback((id: number) => {
+    dispatch({ type: "toggled", payload: { id } });
+  }, []);
+
+  const cleanCompleted = useCallback(() => {
+    dispatch({ type: "cleanedCompleted" });
+  }, []);
+
   const value = useMemo<TasksContextValue>(
     () => ({
       tasks,
@@ -83,13 +103,10 @@ export function TasksProvider({ children }: Props) {
       setSearch,
       pendingCount,
       pendingText,
-      addTask: (title: string) =>
-        dispatch({ type: "added", payload: { title } }),
-      removeTask: (id: number) =>
-        dispatch({ type: "removed", payload: { id } }),
-      toggleTask: (id: number) =>
-        dispatch({ type: "toggled", payload: { id } }),
-      cleanCompleted: () => dispatch({ type: "cleanedCompleted" }),
+      addTask: addTask,
+      removeTask: removeTask,
+      toggleTask: toggleTask,
+      cleanCompleted: cleanCompleted,
     }),
     [
       tasks,
@@ -99,6 +116,10 @@ export function TasksProvider({ children }: Props) {
       setSearch,
       pendingCount,
       pendingText,
+      addTask,
+      removeTask,
+      toggleTask,
+      cleanCompleted,
     ],
   );
 
