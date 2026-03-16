@@ -1,8 +1,8 @@
-import TaskFilters from "../features/tasks/components/tasks/TaskFilters";
-import TaskForm from "../features/tasks/components/tasks/TaskForm";
-import TaskHeader from "../features/tasks/components/tasks/TaskHeader";
-import TaskList from "../features/tasks/components/tasks/TaskList";
-import TaskSearch from "../features/tasks/components/tasks/TaskSearch";
+import TaskFilters from "../features/tasks/components/TaskFilters";
+import TaskForm from "../features/tasks/components/TaskForm";
+import TaskHeader from "../features/tasks/components/TaskHeader";
+import TaskList from "../features/tasks/components/TaskList";
+import TaskSearch from "../features/tasks/components/TaskSearch";
 import { useTasksContext } from "../features/tasks/hooks/useTasksContext";
 
 export default function TasksPage() {
